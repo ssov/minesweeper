@@ -82,10 +82,17 @@ public class Cell {
     }
 
     public void open() {
-        status = Status.Open;
+        if(status != Status.Mark) {
+            status = Status.Open;
+        }
     }
 
     public void mark() {
-        status = Status.Mark;
+        if (status == Status.Mark) {
+            status = Status.Close;
+        }
+        else {
+            status = Status.Mark;
+        }
     }
 }
