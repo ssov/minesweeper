@@ -105,7 +105,6 @@ public class Cell {
     public void open() {
         if(status == Status.Close) {
             status = Status.Open;
-            if(mine == 0) invokeMethod("openNeighboringCell");
             Minesweeper.volume--;
         }
     }
@@ -115,15 +114,6 @@ public class Cell {
             Method m = this.getClass().getDeclaredMethod(methodName, int.class, int.class);
             neighboringCell(m);
         } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        }
-    }
-    
-    private void openNeighboringCell(int x, int y) {
-        try {
-            Method open = this.getClass().getDeclaredMethod("open");
-            open.invoke(Minesweeper.cells.get(y).get(x));
-        } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
             e.printStackTrace();
         }
     }
