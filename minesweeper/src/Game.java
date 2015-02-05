@@ -9,7 +9,20 @@ public class Game {
         boolean status = true;
         Scanner scanner = new Scanner(System.in);
         String cell, mode;
+        int row, col, mine;
 
+        System.out.println("ゲーム設定を行います。");
+        
+        System.out.print("横 (2 ~ 26): ");
+        col = scanner.nextInt();
+        
+        System.out.print("縦 (2 ~ 128): ");
+        row = scanner.nextInt();
+
+        System.out.printf("地雷の数 (1 ~ %d): ", row*col-1);
+        mine = scanner.nextInt();
+
+        minesweeper.setSetting(row, col, mine);
         System.out.println("ゲームを開始します。");
 
         while(status) {
@@ -38,5 +51,6 @@ public class Game {
                 System.out.println("ゲームクリア");
             }
         }
+        minesweeper.printBoard();
     }
 }
